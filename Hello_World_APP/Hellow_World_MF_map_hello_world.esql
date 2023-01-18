@@ -1,0 +1,13 @@
+
+
+CREATE COMPUTE MODULE Hellow_World_MF_map_hello_world
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		
+		SET OutputRoot.HTTPReplyHeader."Content-Type" = 'text/html';
+		SET OutputRoot.XMLNSC.html.body = 'HELLO WORLD!!!' ; 
+		
+
+		RETURN TRUE;
+	END;
+END MODULE;

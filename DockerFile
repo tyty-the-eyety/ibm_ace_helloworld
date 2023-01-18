@@ -1,0 +1,4 @@
+FROM tyronesch/ace:12.0.4
+
+COPY *.sh /home/aceuser/ace-server
+
