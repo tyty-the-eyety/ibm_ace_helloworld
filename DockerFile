@@ -26,6 +26,7 @@ USER 1001
 #	RUN env  && sleep 10
 RUN export LICENSE=accept && . /opt/ibm/ace-12/server/bin/mqsiprofile && /opt/ibm/ace-12/server/bin/ibmint deploy --input-path /tmp/code/ --output-work-directory /home/aceuser/ace-server/ --project Hello_World_APP
 RUN env  && sleep 10
+RUN rm /tmp/code/*
 #RUN /tmp/code/create_bar.sh
 #RUN /opt/ibm/ace-12/server/bin/ibmint deploy --input-path /tmp/code/ --output-work-directory /home/aceuser/ace-server/ --project Hello_World_APP 
 #COPY shared-classes /home/aceuser/ace-server/shared-classes
