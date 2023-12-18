@@ -5,7 +5,8 @@
 #
 #
 
-FROM tyronesch/ace:12.0.7
+#FROM tyronesch/ace:12.0.7
+FROM tdolby/experimental:ace-minimal-build-12.0.10.0-alpine
 
 ARG project_name
 
