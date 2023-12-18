@@ -5,8 +5,8 @@
 #
 #
 
-#FROM tyronesch/ace:12.0.7
-FROM tdolby/experimental:ace-minimal-12.0.10.0-ubuntu
+FROM tyronesch/ace:12.0.7
+#FROM tdolby/experimental:ace-minimal-12.0.10.0-ubuntu
 
 ARG project_name
 
