@@ -1,0 +1,38 @@
+# For demo purposes only 
+# docker run -e LICENSE=accept -p 7600:7600 -p 7800:7800 --rm -ti tyronesch/ace:12.0.7
+# Integration Server is located at /home/aceuser/ace-server, copy bars and server yaml here
+# Can also mount a volume for the work directory: /home/aceuser/ace-server
+#
+#
+
+FROM tyronesch/ace:12.0.7
+#FROM tdolby/experimental:ace-minimal-12.0.10.0-ubuntu
+
+ARG project_name
+
+USER root
+# cpy config file to integration server
+COPY ./config/server.conf.yaml /home/aceuser/ace-server/
+# cpy code to /tmp/code to build bar file
+RUN mkdir -p /tmp/code/ 
+COPY ./ /tmp/code/
+RUN  chmod -R ugo+rwx /tmp/
+RUN ls -latr /tmp/code  && sleep 10
+# complile code into bar file 
+# ibmint deploy --input-path $PWD --output-work-directory /tmp/bdd/FridayApplication-work-dir --project FridayApplication --project FridayApplication_Test --trace trace.txt
+#ibmint deploy --input-path /tmp/ --output-work-directory /home/aceuser/ace-server/ --trace trace.txt
+#RUN . /opt/ibm/ace-12/server/bin/mqsiprofile
+
+USER 1001
+#	RUN env  && sleep 10
+RUN export LICENSE=accept && . /opt/ibm/ace-12/server/bin/mqsiprofile && /opt/ibm/ace-12/server/bin/ibmint deploy --input-path /tmp/code/ --output-work-directory /home/aceuser/ace-server/ --project Hello_World_APP
+RUN env  && sleep 10
+RUN rm -rf /tmp/code/*
+#RUN /tmp/code/create_bar.sh
+#RUN /opt/ibm/ace-12/server/bin/ibmint deploy --input-path /tmp/code/ --output-work-directory /home/aceuser/ace-server/ --project Hello_World_APP 
+#COPY shared-classes /home/aceuser/ace-server/shared-classes
+#RUN  chmod -R ugo+rwx /home/aceuser
+#USER 1000
+
+
+
